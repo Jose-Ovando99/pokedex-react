@@ -18,7 +18,7 @@ const Pokemons = () => {
 
   const pokemonsByName = allPokemons.filter((pokemon) => pokemon.name.includes(pokemonName));
 
- const handleChangePokemonName = (e) => setPokemonName(e.target.value.toLowerCase());
+  const handleChangePokemonName = (e) => setPokemonName(e.target.value.toLowerCase());
 
   useEffect(() => {
     axios
@@ -28,32 +28,32 @@ const Pokemons = () => {
   }, []);
 
   useEffect(() => {
-  if(isVisible) {
     const maxPokemons = pokemonsByName.length;
-    const newLimit = limit + INCREASE_LIMIT;
-    newLimit > maxPokemons ? setLimit(maxPokemons) : setLimit(newLimit);
-  }
+    if (isVisible && maxPokemons !== 0) {
+      const newLimit = limit + INCREASE_LIMIT;
+      newLimit > maxPokemons ? setLimit(maxPokemons) : setLimit(newLimit);
+    }
   }, [isVisible]);
 
   useEffect(() => {
     setLimit(INITIAL_LIMIT);
   }, [pokemonName])
 
-  return(
-  <section className='p-4 py-5'>
-    <form>
-      <div className='bg-white p-4 flex rounded-2xl text-lg'>
-        <input className='outline-none flex-1' onChange={handleChangePokemonName} autoComplete='off' type='text' name='pokemonName' placeholder='Search your Pokemon' />
-        <button className='bg-red-500 p-2 rounded-xl shadow-lg  shadow-red-500/50 hover:bg-red-400 transition-colors'>
-          <IconSearch color='white' stroke={3} />
-        </button>
-      </div>
-    </form>
-    <PokemonList pokemons={pokemonsByName.slice(0, limit)}/>
-  
-  {/* Target observer */}
-  <span ref={targetObserver}></span>
-  </section>
+  return (
+    <section className='p-4 py-5'>
+      <form>
+        <div className='bg-white p-4 flex rounded-2xl text-lg'>
+          <input className='outline-none flex-1' onChange={handleChangePokemonName} autoComplete='off' type='text' name='pokemonName' placeholder='Search your Pokemon' />
+          <button type='button' className='bg-red-500 p-2 rounded-xl shadow-lg  shadow-red-500/50 hover:bg-red-400 transition-colors'>
+            <IconSearch color='white' stroke={3} />
+          </button>
+        </div>
+      </form>
+      <PokemonList pokemons={pokemonsByName.slice(0, limit)} />
+
+      {/* Target observer */}
+      <span ref={targetObserver}></span>
+    </section>
   );
 };
 

@@ -2,7 +2,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import { colorByType } from "../constants/pokemon";
 
-const PokemonPreview = ({ pokemonURL }) => {
+const PokemonPreview = ({ pokemonURL, onClick }) => {
   const [pokemon, setPokemon] = useState(null)
 
   useEffect(() => {
@@ -14,7 +14,7 @@ const PokemonPreview = ({ pokemonURL }) => {
 
 
   return (
-    <article className="grid gap-2 text-center capitalize shadow-lg shadow-slate-400/20 bg-white rounded-[30px] relative font-semibold pb-4 border-2 hover:border-slate-200 border-transparent cursor-pointer group">
+    <article onClick={onClick} className="grid gap-2 text-center capitalize shadow-lg shadow-slate-400/20 bg-white rounded-[30px] relative font-semibold pb-4 border-2 hover:border-slate-200 border-transparent cursor-pointer group">
       <header className="h-9">
         <img
           className="group-hover:scale-110 pixelated transition-transform absolute left-1/2 -translate-x-1/2 top-0 -translate-y-1/2"
