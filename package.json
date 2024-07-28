@@ -2,7 +2,7 @@
   "name": "pokeapi",
   "private": true,
   "version": "0.0.0",
-  "homepage": "https://jose-ovando99.github.io/pokedex-react/",
+  "homepage": "http://jose-ovando99.github.io/pokedex-react/",
   "type": "module",
   "scripts": {
     "dev": "vite",
